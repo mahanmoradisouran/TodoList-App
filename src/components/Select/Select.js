@@ -1,4 +1,3 @@
-// External Dependencies
 import { Fragment, useEffect, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
@@ -12,24 +11,27 @@ const type = [
 ];
 
 export default function Select({ updateSelectedInputType, SelectedType }) {
-  const [selected, setSelected] = useState(type[0]);
+  
+  useEffect(() => {
+    // console.log(SelectedType);
+    
+    function setNewColor() {
+      const newType = type.find((t) => t.name === SelectedType);
+      setSelected(newType);
+    }
 
-  const upDateOldSelectedInEditeHandler = () => {
-    const newType = type.find((t) => t.name === SelectedType);
-    setSelected(newType);
-  };
+    if (SelectedType !== undefined) {
+      setNewColor();
+    }
+  });
+
+  const [selected, setSelected] = useState(type[0]);
 
   const updateSelected = (e) => {
     const index = type.findIndex((element) => e.name === element.name);
     updateSelectedInputType(e.name);
     setSelected(type[index]);
   };
-
-  useEffect(() => {
-    if (SelectedType) {
-      upDateOldSelectedInEditeHandler();
-    }
-  }, []);
 
   return (
     <Listbox value={selected} onChange={updateSelected}>

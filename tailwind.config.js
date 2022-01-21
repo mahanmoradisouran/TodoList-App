@@ -1,8 +1,6 @@
 module.exports = {
   plugins: [require("tailwindcss"), require("autoprefixer")],
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
-  darkMode: false, // or 'media' or 'class'
   theme: {
     screens: {
       sm: "640px",
@@ -19,14 +17,6 @@ module.exports = {
 
       "2xl": "1536px",
       // => @media (min-width: 1536px) { ... }
-    },
-    extend: {
-      animation: {
-        wiggle: "wiggle 1s ease-in-out infinite",
-      },
-    },
-    variants: {
-      extend: {},
     },
   },
 };

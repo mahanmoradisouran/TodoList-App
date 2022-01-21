@@ -4,17 +4,10 @@ import Select from "../Select/Select";
 import { AiOutlineReload } from "react-icons/ai";
 
 const EditePage = ({ todos, setTodos, showEdite, setShowEdite }) => {
-  const [showDescriptionInput, setShowDescriptionInput] = useState(false);
   const [todoInput, setTodoInput] = useState({ ...showEdite });
 
   const changeSelectedTypeHandler = (type) =>
     setTodoInput({ ...todoInput, type });
-  const closeDescriptionInput = () => {
-    setShowDescriptionInput(!showDescriptionInput);
-    if (!showDescriptionInput === false) {
-      setTodoInput({ ...todoInput, description: "" });
-    }
-  };
 
   const submitHandler = (event) => {
     event.preventDefault();
