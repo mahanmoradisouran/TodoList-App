@@ -1,4 +1,4 @@
-import { BsCheck, BsX } from "react-icons/bs";
+import { BsCheck, BsX, BsFillTrashFill } from "react-icons/bs";
 import { AiFillEdit } from "react-icons/ai";
 import Navbar from "../Navbar/Navbar";
 
@@ -16,10 +16,14 @@ const TaskPage = ({ todos, setTodos, setShowTask, showTask, setShowEdite }) => {
     setShowTask(0);
     setShowEdite(findedTodo);
   };
+  const delteTaskHandler = () => {
+    setTodos(todos.filter((t) => t.id !== findedTodo.id));
+    setShowTask(0);
+  };
 
   return (
     <div className="w-full h-full relative">
-      <Navbar onClick={setShowTask} time={findedTodo.time}/>
+      <Navbar onClick={setShowTask} time={findedTodo.time} />
       <div className="md:w-9/12 w-10/12 mx-auto py-10 text-gray-500">
         <h1 className="text-gray-900 font-bold md:text-3xl text-2xl">
           {findedTodo.todo}
@@ -41,9 +45,15 @@ const TaskPage = ({ todos, setTodos, setShowTask, showTask, setShowEdite }) => {
         <div className="left-5 bottom-5 absolute">
           <button
             onClick={showEditPage}
-            className="bg-blue-500 rounded-full p-3 text-white transition-all hover:bg-blue-600 hover:shadow-md"
+            className="bg-blue-100 rounded-full p-3 text-sky-400 transition-all hover:bg-blue-200 hover:shadow-md"
           >
             <AiFillEdit size={20} />
+          </button>
+          <button
+            onClick={delteTaskHandler}
+            className="bg-red-100 rounded-full p-3 ml-1 text-rose-600 transition-all hover:bg-red-200 hover:shadow-md"
+          >
+            <BsFillTrashFill size={20} />
           </button>
         </div>
         <div className="right-5 bottom-5 absolute ">

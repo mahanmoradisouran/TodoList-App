@@ -1,20 +1,18 @@
 import { Fragment, useEffect, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+import { SelectorIcon } from "@heroicons/react/solid";
 
 const type = [
-  { name: "Task type", color: "#E5E7EB95" },
-  { name: "Home", color: "#8B5CF695" },
-  { name: "typeal", color: "#EC489995" },
-  { name: "school", color: "#34D39995" },
-  { name: "Work", color: "#F59E0B95" },
+  { name: "Task type", color: "#E5E7EB98" },
+  { name: "Home", color: "#8B5CF698" },
+  { name: "typeal", color: "#EC489998" },
+  { name: "school", color: "#34D39998" },
+  { name: "Work", color: "#F59E0B98" },
 ];
 
 export default function Select({ updateSelectedInputType, SelectedType }) {
   
   useEffect(() => {
-    // console.log(SelectedType);
-    
     function setNewColor() {
       const newType = type.find((t) => t.name === SelectedType);
       setSelected(newType);
@@ -35,7 +33,7 @@ export default function Select({ updateSelectedInputType, SelectedType }) {
 
   return (
     <Listbox value={selected} onChange={updateSelected}>
-      <div className="md:w-full relative z-50">
+      <div className="md:w-full relative  z-50">
         <Listbox.Button className="flex hover:border-indigo-600 hover:ring-indigo-600 md:border-2 border relative w-full md:py-2 py-2.5 pr-10 text-left bg-transparent rounded-md cursor-default focus:outline-none focus-visible:border-indigo-500 border-gray-200 ring-1 ring-gray-200 md:ring-0 md:border-transparent">
           <span
             style={{ backgroundColor: selected.color }}
@@ -84,16 +82,6 @@ export default function Select({ updateSelectedInputType, SelectedType }) {
                       </span>
                       {type.name}
                     </span>
-                    {Selected ? (
-                      <span
-                        className={`${
-                          active ? "text-amber-600" : "text-amber-600"
-                        }
-                                  absolute inset-y-0 left-0 flex items-center pl-3`}
-                      >
-                        <CheckIcon className="w-5 h-5" aria-hidden="true" />
-                      </span>
-                    ) : null}
                   </div>
                 )}
               </Listbox.Option>

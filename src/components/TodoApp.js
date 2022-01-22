@@ -5,7 +5,11 @@ import TaskPage from "./TaskPage/TaskPage";
 import EditePage from "./EditePage/EditePage";
 
 export default function TodoApp0() {
+  const [status, setStatus] = useState("All");
+
   const [todos, setTodos] = useState([]);
+
+  const [filteredTodos, setFilteredTodos] = useState([]);
   // 0 => nothing show
   // Number => show todo by number (id)
   const [showTask, setShowTask] = useState(0);
@@ -14,9 +18,21 @@ export default function TodoApp0() {
   const [showEdite, setShowEdite] = useState(0);
 
   useEffect(() => {
-    // console.log(showTask);
-  }, [showTask]);
+    filterTodos(status);
+  }, [todos, status]);
 
+  function filterTodos(status) {
+    switch (status) {
+      case "All":
+        return setFilteredTodos(todos);
+      case "Completed":
+        return setFilteredTodos(todos.filter((t) => t.isComplete === true));
+      case "Uncompleted":
+        return setFilteredTodos(todos.filter((t) => t.isComplete === false));
+      default:
+        break;
+    }
+  }
   const renderContentHandler = () => {
     if (showTask === 0 && showEdite === 0) {
       return (
@@ -27,9 +43,10 @@ export default function TodoApp0() {
             setShowTask={setShowTask}
           />
           <TodoList
-            todos={todos}
+            todos={filteredTodos}
             setTodos={setTodos}
             setShowTask={setShowTask}
+            setStatus={setStatus}
           />
         </>
       );
@@ -58,9 +75,7 @@ export default function TodoApp0() {
   return (
     <div
       className={`${
-        showTask || showEdite !== 0 
-          ? "w-full bg-white h-full"
-          : "w-10/12 pt-5"
+        showTask || showEdite !== 0 ? "w-full bg-white h-full" : "w-10/12 pt-5"
       } flex flex-col mx-auto `}
     >
       {renderContentHandler()}
