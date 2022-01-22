@@ -18,21 +18,21 @@ export default function TodoApp0() {
   const [showEdite, setShowEdite] = useState(0);
 
   useEffect(() => {
+    const filterTodos = (status) => {
+      switch (status) {
+        case "All":
+          return setFilteredTodos(todos);
+        case "Completed":
+          return setFilteredTodos(todos.filter((t) => t.isComplete === true));
+        case "Uncompleted":
+          return setFilteredTodos(todos.filter((t) => t.isComplete === false));
+        default:
+          break;
+      }
+    };
     filterTodos(status);
   }, [todos, status]);
-
-  function filterTodos(status) {
-    switch (status) {
-      case "All":
-        return setFilteredTodos(todos);
-      case "Completed":
-        return setFilteredTodos(todos.filter((t) => t.isComplete === true));
-      case "Uncompleted":
-        return setFilteredTodos(todos.filter((t) => t.isComplete === false));
-      default:
-        break;
-    }
-  }
+  
   const renderContentHandler = () => {
     if (showTask === 0 && showEdite === 0) {
       return (

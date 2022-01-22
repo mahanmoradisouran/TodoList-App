@@ -14,7 +14,7 @@ export default function SortSelect({ setStatus }) {
 
   useEffect(() => {
     setStatus(selected.name);
-  }, [selected]);
+  }, [selected , setStatus]);
 
   return (
     <div className="w-72 z-40">
