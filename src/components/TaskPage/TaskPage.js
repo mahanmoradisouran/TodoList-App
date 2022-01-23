@@ -29,11 +29,11 @@ const TaskPage = ({ todos, setTodos, setShowTask, showTask, setShowEdite }) => {
           {findedTodo.todo}
         </h1>
         <div
-          className="mt-5"
+          className="h-full relative my-5"
           style={{ textAlign: "start", unicodeBidi: "plaintext" }}
         >
           {findedTodo.description ? (
-            <p className="text-2xl text-gray-800">{findedTodo.description}</p>
+            <div className="text-2xl text-gray-800 break-all">{findedTodo.description}</div>
           ) : (
             <p className="text-gray-400 text-lg">
               No caption aded for this task.
@@ -41,7 +41,7 @@ const TaskPage = ({ todos, setTodos, setShowTask, showTask, setShowEdite }) => {
           )}
         </div>
       </div>
-      <div className="absolute bottom-0 w-full">
+      <div className="fixed bottom-0 w-full">
         <div className="left-5 bottom-5 absolute">
           <button
             onClick={showEditPage}

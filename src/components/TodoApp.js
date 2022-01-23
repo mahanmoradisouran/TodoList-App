@@ -31,8 +31,8 @@ export default function TodoApp0() {
       }
     };
     filterTodos(status);
-  }, [todos, status]);
-  
+  }, [todos, status, filteredTodos]);
+
   const renderContentHandler = () => {
     if (showTask === 0 && showEdite === 0) {
       return (
@@ -75,8 +75,8 @@ export default function TodoApp0() {
   return (
     <div
       className={`${
-        showTask || showEdite !== 0 ? "w-full bg-white h-full" : "w-10/12 pt-5"
-      } flex flex-col mx-auto `}
+        showTask || showEdite !== 0 ? "w-full h-full" : "w-10/12 pt-5"
+      } ${showEdite !== 0 && "bg-white"}flex flex-col mx-auto `}
     >
       {renderContentHandler()}
     </div>
